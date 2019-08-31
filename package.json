@@ -4,7 +4,8 @@
   "description": "Generate API with fastify by OpenAPI specs.",
   "main": "fog.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -28,5 +29,8 @@
     "fastify-static": "^2.5.0",
     "js-yaml": "^3.13.1",
     "swagger-ui-dist": "^3.23.6"
+  },
+  "np": {
+    "yarn": false
   }
 }
