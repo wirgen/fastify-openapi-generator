@@ -14,10 +14,10 @@ npm i fastify-openapi-generator --save
 ## Usage
 Add it to your project with `register` and pass it some basic options, then call the `swagger` api and you are done!
 
-```js
+```JS
 const fastify = require("fastify")();
 
-fastify.register(require("../fastify-openapi-generator"), {
+fastify.register(require("fastify-openapi-generator"), {
   controllers: require("./controllers"),
   routeDocs: "/docs",
   yaml: "swagger.yaml"
