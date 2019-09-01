@@ -14,7 +14,8 @@ module.exports = function (fastify, options, done) {
     dom_id: "#swagger-ui",
     deepLinking: true
   }`;
-  const swaggerIndex = fs.readFileSync(path.join(__dirname, "/swagger.html")).toString().replace("/*swaggerOptions*/", swaggerOptions);
+  const swaggerTemplate = options.template || path.join(__dirname, "swagger.hmtl");
+  const swaggerIndex = fs.readFileSync(swaggerTemplate).toString().replace("/*swaggerOptions*/", swaggerOptions);
   
   // Document files
   fastify.route({
@@ -31,7 +32,7 @@ module.exports = function (fastify, options, done) {
     handler: function (request, reply) {
       reply
         .type("application/x-yaml")
-        .send(swaggerYaml);
+        .send(yaml.safeDump(swaggerObject));
     }
   });
   

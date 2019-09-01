@@ -7,12 +7,14 @@ module.exports = function (fastify, options, done) {
   const swaggerObject = yaml.safeLoad(fs.readFileSync(options.filepath));
   
   // Add schemas
-  for (let schema in swaggerObject.components.schemas) {
-    if (swaggerObject.components.schemas.hasOwnProperty(schema)) {
-      fastify.addSchema({
-        $id: schema,
-        ...swaggerObject.components.schemas[schema]
-      });
+  if (swaggerObject.components !== undefined && swaggerObject.components.schemas !== undefined) {
+    for (let schema in swaggerObject.components.schemas) {
+      if (swaggerObject.components.schemas.hasOwnProperty(schema)) {
+        fastify.addSchema({
+          $id: schema,
+          ...swaggerObject.components.schemas[schema]
+        });
+      }
     }
   }
   

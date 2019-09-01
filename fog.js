@@ -13,6 +13,7 @@ module.exports = function (fastify, options, done) {
   
   options.routeDocs = options.routeDocs || "/docs";
   options.yaml = options.yaml || "swagger.yaml";
+  options.template = options.template || "";
   
   fastify.register(require("./routes"), {
     filepath: options.yaml,
@@ -21,7 +22,8 @@ module.exports = function (fastify, options, done) {
   
   fastify.register(require("./swagger"), {
     prefix: options.routeDocs,
-    filepath: options.yaml
+    filepath: options.yaml,
+    template: options.template
   });
   
   done();

@@ -20,7 +20,8 @@ const fastify = require("fastify")();
 fastify.register(require("fastify-openapi-generator"), {
   controllers: require("./controllers"),
   routeDocs: "/docs",
-  yaml: "swagger.yaml"
+  yaml: "swagger.yaml",
+  template: "swagger.html"
 });
 ```
 
@@ -55,6 +56,9 @@ Prefix for swagger documentation. By default, `/docs`. Also, you can get JSON (`
 <a name="yaml"></a>
 #### yaml
 Path for swagger specification file in YAML. By default, `swagger.yaml`.
+<a name="template"></a>
+#### template
+Path for custom html template for swagger. As start point you can copy `swagger.html` from plugin.
 
 <a name="security"></a>
 ### Security
