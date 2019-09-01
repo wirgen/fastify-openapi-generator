@@ -11,9 +11,10 @@ module.exports = function (fastify, options, done) {
     throw new TypeError("Property 'controllers' is required");
   }
   
-  options.routeDocs = options.routeDocs || "/docs";
+  options.routeDocs = options.routeDocs || "/docs/";
   options.yaml = options.yaml || "swagger.yaml";
   options.template = options.template || "";
+  options.redocTemplate = options.redocTemplate || "";
   
   fastify.register(require("./routes"), {
     filepath: options.yaml,

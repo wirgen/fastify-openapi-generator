@@ -9,6 +9,7 @@ const path = require("path");
 module.exports = function (fastify, options, done) {
   const swaggerYaml = fs.readFileSync(options.filepath);
   const swaggerObject = yaml.safeLoad(swaggerYaml);
+  
   const swaggerOptions = `{
     url: "json",
     dom_id: "#swagger-ui",
@@ -16,6 +17,10 @@ module.exports = function (fastify, options, done) {
   }`;
   const swaggerTemplate = options.template || path.join(__dirname, "swagger.hmtl");
   const swaggerIndex = fs.readFileSync(swaggerTemplate).toString().replace("/*swaggerOptions*/", swaggerOptions);
+  
+  const redocUrl = "../json";
+  const redocTemplate = options.redocTemplate || path.join(__dirname, "redoc.html");
+  const redocIndex = fs.readFileSync(redocTemplate).toString().replace("/*redocUrl*/", redocUrl);
   
   // Document files
   fastify.route({
@@ -47,6 +52,21 @@ module.exports = function (fastify, options, done) {
   
   fastify.register(fastifyStatic, {
     root: swaggerUiAssetPath
+  });
+  
+  // Serve redoc static routes
+  fastify.route({
+    url: "/redoc/",
+    method: "GET",
+    handler: (request, reply) => {
+      reply.type("text/html").send(redocIndex);
+    }
+  });
+  
+  fastify.register(fastifyStatic, {
+    root: path.join(__dirname, "node_modules", "redoc", "bundles"),
+    prefix: "/redoc",
+    decorateReply: false
   });
   
   done();
