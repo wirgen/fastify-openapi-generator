@@ -33,7 +33,7 @@ module.exports = function (fastify, options, done) {
           const handler = swaggerObject.paths[path][method].operationId.split(".");
           fastify.route({
             method: method.toUpperCase(),
-            url: path,
+            url: path.replace(/{(.*?)}/g, ":$1"),
             schema: {
               response: responses
             },
