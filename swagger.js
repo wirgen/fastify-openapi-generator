@@ -64,7 +64,7 @@ module.exports = function (fastify, options, done) {
   });
   
   fastify.register(fastifyStatic, {
-    root: path.join(__dirname, "node_modules", "redoc", "bundles"),
+    root: path.dirname(require.resolve("redoc")),
     prefix: "/redoc",
     decorateReply: false
   });
