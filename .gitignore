@@ -91,3 +91,6 @@ typings/
 
 # IDEA
 .idea
+
+# Other
+.DS_Store

@@ -15,7 +15,7 @@ module.exports = function (fastify, options, done) {
     dom_id: "#swagger-ui",
     deepLinking: true
   }`;
-  const swaggerTemplate = options.template || path.join(__dirname, "swagger.hmtl");
+  const swaggerTemplate = options.template || path.join(__dirname, "swagger.html");
   const swaggerIndex = fs.readFileSync(swaggerTemplate).toString().replace("/*swaggerOptions*/", swaggerOptions);
   
   const redocUrl = "../json";
