@@ -26,7 +26,7 @@
   "homepage": "https://github.com/wirgen/fastify-openapi-generator",
   "dependencies": {
     "fastify": "^2.7.1",
-    "fastify-static": "^2.5.0",
+    "fastify-static": "^4.2.4",
     "js-yaml": "^3.13.1",
     "redoc": "^2.0.0-rc.14",
     "swagger-ui-dist": "^3.23.6"
