@@ -18,10 +18,6 @@ module.exports = function (fastify, options, done) {
   const swaggerTemplate = options.template || path.join(__dirname, "swagger.html");
   const swaggerIndex = fs.readFileSync(swaggerTemplate).toString().replace("/*swaggerOptions*/", swaggerOptions);
   
-  const redocUrl = "../json";
-  const redocTemplate = options.redocTemplate || path.join(__dirname, "redoc.html");
-  const redocIndex = fs.readFileSync(redocTemplate).toString().replace("/*redocUrl*/", redocUrl);
-  
   // Document files
   fastify.route({
     url: "/json",
@@ -52,21 +48,6 @@ module.exports = function (fastify, options, done) {
   
   fastify.register(fastifyStatic, {
     root: swaggerUiAssetPath
-  });
-  
-  // Serve redoc static routes
-  fastify.route({
-    url: "/redoc/",
-    method: "GET",
-    handler: (request, reply) => {
-      reply.type("text/html").send(redocIndex);
-    }
-  });
-  
-  fastify.register(fastifyStatic, {
-    root: path.dirname(require.resolve("redoc")),
-    prefix: "/redoc",
-    decorateReply: false
   });
   
   done();

@@ -14,7 +14,6 @@ module.exports = function (fastify, options, done) {
   options.routeDocs = options.routeDocs || "/docs/";
   options.yaml = options.yaml || "swagger.yaml";
   options.template = options.template || "";
-  options.redocTemplate = options.redocTemplate || "";
   
   fastify.register(require("./routes"), {
     filepath: options.yaml,

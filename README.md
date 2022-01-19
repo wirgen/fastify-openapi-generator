@@ -22,7 +22,6 @@ fastify.register(require("fastify-openapi-generator"), {
   routeDocs: "/docs/",
   yaml: "swagger.yaml",
   template: "swagger.html",
-  redocTemplate: "redoc.html"
 });
 ```
 
@@ -60,9 +59,6 @@ Path for swagger specification file in YAML. By default, `swagger.yaml`.
 <a name="template"></a>
 #### template
 Path for custom html template for [Swagger](https://swagger.io/). As start point you can copy `swagger.html` from plugin.
-<a name="redocTemplate"></a>
-#### redocTemplate
-Path for custom html template for [Redoc](https://redocly.github.io/redoc/). As start point you can copy `redoc.html` from plugin.
 
 <a name="security"></a>
 ### Security
